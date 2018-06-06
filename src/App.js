@@ -9,12 +9,12 @@ import SearchPage from './search/search.search.component'
 import DiscoverPage from './search/search.discover.component'
 import FindPage from './search/search.find.component'
 import ResultsList from './results/results.container'
+import './index.css'
 
 class App extends Component {
   static propTypes = {
     page: PropTypes.string.isRequired,
     searchType: PropTypes.string,
-    filter: PropTypes.string,
     query: PropTypes.string
   }
 

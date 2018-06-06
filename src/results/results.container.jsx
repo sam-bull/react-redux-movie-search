@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Movie from './results.component'
-import '../index.css'
+import './results.css'
 // import { connect } from 'react-redux'
 // import { updateResults } from './results.actions'
 import { discoverUrl, findUrl, searchUrl } from '../api/constants'

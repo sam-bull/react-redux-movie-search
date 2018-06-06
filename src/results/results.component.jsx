@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css'
+import './results.css'
 
 const imgUrl = (path) => {
   return `https://image.tmdb.org/t/p/w1280${path}`
