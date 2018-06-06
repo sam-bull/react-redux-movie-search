@@ -4,7 +4,7 @@ import { goToPage } from './menu/menu.actions'
 import { setSearchAndParams } from './search/search.actions'
 import { updateResults } from './results/results.actions'
 import PropTypes from 'prop-types'
-import MainMenu from './menu/menu.component'
+import Header from './header/header.component'
 import SearchPage from './search/search.search.component'
 import DiscoverPage from './search/search.discover.component'
 import FindPage from './search/search.find.component'
@@ -31,20 +31,11 @@ class App extends Component {
         : SearchPage
     return (
       <div>
-        <h1>Search</h1>
-        <MainMenu goToPage={goToPage} />
+        <Header goToPage={goToPage} currentPage={page} />
         <Page setSearchAndParams={setSearchAndParams} />
         {page === 'results' ? <ResultsList {...this.props} /> : <div></div>}
       </div>
     )
-    // const { page, goToPage, setSearchAndParams } = this.props
-    // console.log(page)
-    // return (
-    //   <div>
-    //     <h1 className="header">Movie Search</h1>
-    //     <Page goToPage={goToPage} setSearchAndParams={setSearchAndParams} updateResults={updateResults} />
-    //   </div>
-    // )
   }
 }
 

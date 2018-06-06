@@ -1,6 +1,6 @@
-import { GOTO } from './menu.action.types'
+import { GOTO } from './header.action.types'
 
-const menuReducer = (state = {}, action) => {
+const headerReducer = (state = {}, action) => {
   const payload = action.payload
   switch (action.type) {
     case GOTO:
@@ -11,4 +11,4 @@ const menuReducer = (state = {}, action) => {
   }
 }
 
-export default menuReducer
+export default headerReducer

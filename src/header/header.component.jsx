@@ -1,7 +1,8 @@
 import React from 'react';
 
-const MainPage = ({ goToPage }) => (
+const Header = ({ goToPage }) => (
   <div>
+  <h1>The Movie Database</h1>
     <button onClick={goToPage('search')}>
       Search
     </button>
@@ -14,4 +15,4 @@ const MainPage = ({ goToPage }) => (
   </div>
 )
 
-export default MainPage
+export default Header
