@@ -49,6 +49,21 @@ class ResultsList extends Component {
     fetch(getUrl(searchType, filter, query)).then(this.validate).then(this.onSuccess).catch(this.failure)
   }
 
+  searchSummary = () => {
+    const { searchType, filter, query } = this.props
+    const start = 'You searched for:'
+    switch (searchType) {
+      case 'search':
+      return `${start} ${query}`
+      case 'discover':
+      return `${start} ${filter}: ${query}`
+      case 'find':
+      return `${start} movie ID ${query}`
+      default:
+      return ''
+    }
+  }
+
   render() {
     const { results } = this.props
     const movieList = results.results.map(movie => <Movie key={movie.id} movie={movie} />)
@@ -56,8 +71,12 @@ class ResultsList extends Component {
       ? <div>{results.error.toString()}</div>
       : <div className="loader" />
     const movieData = results.results ? movieList : movieFail
-    return <div>{movieData}</div >
-
+    return (
+      <div>
+        <div>{this.searchSummary()}</div>
+        <div>{movieData}</div >
+      </div>
+    )
   }
 }
 
