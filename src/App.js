@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToPage } from './menu/menu.actions'
+import { goToPage } from './header/header.actions'
 import { setSearchAndParams } from './search/search.actions'
 import { updateResults } from './results/results.actions'
 import PropTypes from 'prop-types'

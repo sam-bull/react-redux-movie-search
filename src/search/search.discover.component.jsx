@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './search.css'
 
 class DiscoverPage extends Component {
   constructor() {
@@ -15,7 +16,7 @@ class DiscoverPage extends Component {
   render() {
     const { setSearchAndParams } = this.props
     return (
-      <div>
+      <div className='search-container'>
         <select id='filter'>
           <option value="default">-select-</option>
           <option value="year">Year</option>

@@ -1,7 +1,8 @@
 import React from 'react'
+import './search.css'
 
 const FindPage = ({ setSearchAndParams }) => (
-  <div>
+  <div className='search-container'>
     <p>Find movie ID: </p>
     <input type='text' id='query' />
     <button 

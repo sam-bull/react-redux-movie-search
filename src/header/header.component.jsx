@@ -1,17 +1,20 @@
 import React from 'react';
+import './header.css'
 
-const Header = ({ goToPage }) => (
-  <div>
-  <h1>The Movie Database</h1>
-    <button onClick={goToPage('search')}>
-      Search
+const Header = ({ goToPage, page }) => (
+  <div className='header'>
+    <h1>The Movie Database</h1>
+    <div className='buttons'>
+      <button className='button' autofocus onClick={goToPage('search')}>
+        Search
     </button>
-    <button onClick={goToPage('discover')}>
-      Discover
+      <button className='button' onClick={goToPage('discover')}>
+        Discover
     </button>
-    <button onClick={goToPage('find')}>
-      Find
+      <button className='button' onClick={goToPage('find')}>
+        Find
     </button>
+    </div>
   </div>
 )
 
