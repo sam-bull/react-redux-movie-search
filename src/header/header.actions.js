@@ -1,6 +1,6 @@
-import { GOTO } from './header.action.types'
+import { SET_SEARCH } from './header.action.types'
 
-export const goToPage = (page) => ({
-  type: GOTO,
-  payload: { page }
+export const setSearchType = (searchType) => ({
+  type: SET_SEARCH,
+  payload: { searchType }
 })

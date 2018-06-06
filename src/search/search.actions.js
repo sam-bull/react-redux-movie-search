@@ -1,9 +1,8 @@
-import { SET_SEARCH } from './search.action.types'
+import { SET_PARAMS } from './search.action.types'
 
-export const setSearchAndParams = (searchType, filter, query) => ({
-  type: SET_SEARCH,
+export const setSearchParams = (filter, query) => ({
+  type: SET_PARAMS,
   payload: {
-    searchType,
     filter,
     query
   }

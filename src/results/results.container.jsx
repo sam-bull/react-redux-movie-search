@@ -66,11 +66,13 @@ class ResultsList extends Component {
 
   render() {
     const { results } = this.props
-    const movieList = results.results.map(movie => <Movie key={movie.id} movie={movie} />)
+    console.log(results)
     const movieFail = results.error
       ? <div>{results.error.toString()}</div>
       : <div className="loader" />
-    const movieData = results.results ? movieList : movieFail
+    const movieData = results.results
+    ? results.results.map(movie => <Movie key={movie.id} movie={movie} />)
+    : <div className="loader" />
     return (
       <div>
         <div>{this.searchSummary()}</div>

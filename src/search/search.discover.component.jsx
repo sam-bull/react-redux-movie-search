@@ -14,7 +14,7 @@ class DiscoverPage extends Component {
   // }
 
   render() {
-    const { setSearchAndParams } = this.props
+    const { setSearchParams } = this.props
     return (
       <div className='search-container'>
         <select id='filter'>
@@ -40,7 +40,7 @@ class DiscoverPage extends Component {
         <br />
         <button
           disabled={document.getElementById('filter')}
-          onClick={() => setSearchAndParams('discover', (document.getElementById('filter'), document.getElementById('query')))}>
+          onClick={() => setSearchParams((document.getElementById('filter'), document.getElementById('query')))}>
           Discover Movies
         </button>
       </div>

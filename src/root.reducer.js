@@ -6,18 +6,11 @@
 const reducer = (state = {}, action) => {
   const payload = action.payload
   switch (action.type) {
-    case 'ONE':
-      console.log(payload)
-      return { ...state, number: payload }
-    case 'TWO':
-      console.log(payload)
-      const newNumber = payload + 10
-      return { ...state, number: newNumber }
-    case 'GOTO':
-      console.log('menuReducer updating page in state from', state.page, 'to', payload.page)
-      return { ...state, page: payload.page }
     case 'SET_SEARCH':
-      return { page: 'results', searchType: payload.searchType, filter: payload.filter, query: payload.query }
+      return { ...state, searchType: payload.searchType }
+    case 'SET_PARAMS':
+      console.log('set params')
+      return { ...state, filter: payload.filter, query: payload.query }
     case 'UPDATE_RESULTS':
       return { ...state, results: payload.movies }
     default:

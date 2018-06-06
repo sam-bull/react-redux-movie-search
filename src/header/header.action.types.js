@@ -1,1 +1,1 @@
-export const GOTO = 'GOTO'
+export const SET_SEARCH = 'SET_SEARCH'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToPage } from './header/header.actions'
-import { setSearchAndParams } from './search/search.actions'
+import { setSearchType } from './header/header.actions'
+import { setSearchParams } from './search/search.actions'
 import { updateResults } from './results/results.actions'
 import PropTypes from 'prop-types'
 import Header from './header/header.component'
@@ -13,27 +13,26 @@ import './index.css'
 
 class App extends Component {
   static propTypes = {
-    page: PropTypes.string.isRequired,
     searchType: PropTypes.string,
     query: PropTypes.string
   }
 
   static defaultProps = {
-    page: 'main'
+    searchType: 'search'
   }
 
   render() {
-    const { page, goToPage, setSearchAndParams } = this.props
-    const Page = (page === 'discover')
+    const { searchType, setSearchType, setSearchParams, query } = this.props
+    const SearchType = (searchType === 'discover')
       ? DiscoverPage
-      : (page === 'find')
+      : (searchType === 'find')
         ? FindPage
         : SearchPage
     return (
       <div>
-        <Header goToPage={goToPage} currentPage={page} />
-        <Page setSearchAndParams={setSearchAndParams} />
-        {page === 'results' ? <ResultsList {...this.props} /> : <div></div>}
+        <Header setSearchType={setSearchType} />
+        <SearchType setSearchParams={setSearchParams} />
+        {query ? <ResultsList {...this.props} /> : <div></div>}
       </div>
     )
   }
@@ -41,12 +40,8 @@ class App extends Component {
 
 // Map Redux actions to component props
 const mapDispatchToProps = (dispatch) => ({
-  goToPage: (page) => () => {
-    const action = goToPage(page)
-    console.log('action', action)
-    dispatch(action)
-  },
-  setSearchAndParams: (searchType, filter, query) => dispatch(setSearchAndParams(searchType, filter, query)),
+  setSearchType: (searchType) => () => dispatch(setSearchType(searchType)),
+  setSearchParams: (filter, query) => dispatch(setSearchParams(filter, query)),
   updateResults: (movies) => dispatch(updateResults(movies))
 })
 
@@ -65,7 +60,6 @@ const mapDispatchToProps = (dispatch) => ({
 // Map Redux state to component props
 const mapStateToProps = (state) => {
   const props = {
-    page: state.page,
     searchType: state.searchType,
     filter: state.filter,
     query: state.query,
