@@ -41,8 +41,7 @@ class DiscoverPage extends Component {
         </div>
         <br />
         <button
-          disabled={document.getElementById('filter')}
-          onClick={() => setSearchParams((document.getElementById('filter'), document.getElementById('query')))}>
+          onClick={() => setSearchParams(document.getElementById('filter').value, document.getElementById('query').value)}>
           Discover Movies
         </button>
       </div>
