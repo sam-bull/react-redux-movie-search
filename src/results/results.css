@@ -1,11 +1,13 @@
 
-.moviebox {
+.results--movie {
   border-color: #000;
   border-style: solid;
   margin: 25px 100px;
+  padding: 5px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
 }
 
 .loader {

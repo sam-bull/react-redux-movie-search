@@ -9,8 +9,9 @@ const reducer = (state = {}, action) => {
     case 'SET_SEARCH':
       return { ...state, searchType: payload.searchType }
     case 'SET_PARAMS':
-      console.log('set params')
       return { ...state, filter: payload.filter, query: payload.query }
+    case 'GET_GENRES':
+      return { ...state, genres: payload }
     case 'UPDATE_RESULTS':
       return { ...state, results: payload.movies }
     default:

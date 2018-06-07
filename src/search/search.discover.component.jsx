@@ -17,6 +17,7 @@ class DiscoverPage extends Component {
     const { setSearchParams } = this.props
     return (
       <div className='search-container'>
+      <div>Filter by: </div>
         <select id='filter'>
           <option value="default">-select-</option>
           <option value="year">Year</option>
@@ -25,17 +26,18 @@ class DiscoverPage extends Component {
         </select>
         <input type='text' id='query' />
         <br />
-        <div>Sort by: 
-        <select id='sort_by'>
-          <option value="popularity">Popularity</option>
-          <option value="release_date">Release Date</option>
-          <option value="revenue">Revenue</option>
-          <option value="vote_average">Average votes</option>
-        </select>
-        <select id='sort_by_order'>
-          <option value="desc">descending</option>
-          <option value="asc">ascending</option>
-        </select>
+        <div>Sort by: </div>
+        <div>
+          <select id='sort_by'>
+            <option value="popularity">Popularity</option>
+            <option value="release_date">Release Date</option>
+            <option value="revenue">Revenue</option>
+            <option value="vote_average">Average votes</option>
+          </select>
+          <select id='sort_by_order'>
+            <option value="desc">descending</option>
+            <option value="asc">ascending</option>
+          </select>
         </div>
         <br />
         <button

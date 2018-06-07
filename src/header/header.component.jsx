@@ -3,7 +3,7 @@ import './header.css'
 
 const Header = ({ setSearchType, page }) => (
   <div className='header'>
-    <h1>The Movie Database</h1>
+    <h1>THE<br />MOVIE<br />DB</h1>
     <div className='buttons'>
       <button className='button' autoFocus onClick={setSearchType('search')}>
         Search

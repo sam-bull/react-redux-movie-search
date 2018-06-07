@@ -3,10 +3,10 @@ import './search.css'
 
 const SearchPage = ({ setSearchParams }) => (
   <div className='search-container'>
-    <p>Search text: </p>
+    <div>Search text: </div>
     <input type='text' id='query' />
     <button
-      onClick={() => { console.log('click search'); setSearchParams(undefined, document.getElementById('query').value)} }>
+      onClick={() => setSearchParams(undefined, document.getElementById('query').value)}>
       Search Movies
     </button>
   </div>

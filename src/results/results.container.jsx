@@ -3,11 +3,9 @@ import Movie from './results.component'
 import './results.css'
 // import { connect } from 'react-redux'
 // import { updateResults } from './results.actions'
-import { discoverUrl, findUrl, searchUrl } from '../api/constants'
-
+import { discoverUrl, findUrl, searchUrl, genresUrl } from '../api/constants'
 
 const getUrl = (type, filter, query) => {
-  console.log('getUrl')
   switch (type) {
     case 'search':
       return searchUrl(query)
@@ -22,31 +20,31 @@ const getUrl = (type, filter, query) => {
       throw Error(`Incorrect search type: ${type} must be search, discover or find`)
   }
 }
+
+const validate = (response) => {
+  const { status, statusText } = response
+  if (status < 200) throw Error(statusText)
+  if (status > 299) throw Error(statusText)
+  const json = response.json()
+  return json
+}
+
 class ResultsList extends Component {
   static defaultProps = {
+    // genres: { genres: [] },
     results: { results: [] }
   }
 
-  validate = (response) => {
-    const { status, statusText } = response
-    if (status < 200) throw Error(statusText)
-    if (status > 299) throw Error(statusText)
-    return response.json()
-  }
-
-  onSuccess = (json) => {
-    console.log('fetch success')
-    this.props.updateResults(json)
-  }
-
-  failure = (error) => {
-    this.setState({ movies: { error: error } })
-  }
-
   componentDidMount = () => {
-    console.log('results mount')
     const { searchType, filter, query } = this.props
-    fetch(getUrl(searchType, filter, query)).then(this.validate).then(this.onSuccess).catch(this.failure)
+    fetch(getUrl(searchType, filter, query))
+      .then(validate)
+      .then((json) => this.props.updateResults(json))
+      .catch((error) => console.log('Error searching:', error))
+    fetch(genresUrl())
+      .then(validate)
+      .then((json) => this.props.getGenres(json))
+      .catch((error) => console.log('Error getting genres:', error))
   }
 
   searchSummary = () => {
@@ -54,25 +52,25 @@ class ResultsList extends Component {
     const start = 'You searched for:'
     switch (searchType) {
       case 'search':
-      return `${start} ${query}`
+        return `${start} ${query}`
       case 'discover':
-      return `${start} ${filter}: ${query}`
+        return `${start} ${filter}: ${query}`
       case 'find':
-      return `${start} movie ID ${query}`
+        return `${start} movie ID ${query}`
       default:
-      return ''
+        return ''
     }
   }
 
   render() {
-    const { results } = this.props
-    console.log(results)
-    const movieFail = results.error
+    const { results, genres } = this.props
+    // const memoisedGetGenres = memoise(getGenres)
+    const noResults = results.error
       ? <div>{results.error.toString()}</div>
       : <div className="loader" />
-    const movieData = results.results
-    ? results.results.map(movie => <Movie key={movie.id} movie={movie} />)
-    : <div className="loader" />
+    const movieData = results.results && genres
+      ? results.results.map(movie => <Movie key={movie.id} movie={movie} allGenres={genres.genres} />)
+      : noResults
     return (
       <div>
         <div>{this.searchSummary()}</div>

@@ -13,3 +13,11 @@ export const findUrl = (movieId) => {
 export const searchUrl = (searchValue) => {
   return `${baseUrl}/search/movie?api_key=${apiKey}&query=${searchValue}`
 }
+
+export const genresUrl = () => {
+  return `${baseUrl}/genre/movie/list?api_key=${apiKey}`
+}
+
+export const imgUrl = (path) => {
+  return `https://image.tmdb.org/t/p/w1280${path}`
+}

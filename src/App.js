@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setSearchType } from './header/header.actions'
 import { setSearchParams } from './search/search.actions'
-import { updateResults } from './results/results.actions'
+import { getGenres, updateResults } from './results/results.actions'
 import PropTypes from 'prop-types'
 import Header from './header/header.component'
 import SearchPage from './search/search.search.component'
@@ -23,16 +23,17 @@ class App extends Component {
 
   render() {
     const { searchType, setSearchType, setSearchParams, query } = this.props
+    const { filter, updateResults, getGenres, results, genres} = this.props
     const SearchType = (searchType === 'discover')
       ? DiscoverPage
       : (searchType === 'find')
         ? FindPage
         : SearchPage
     return (
-      <div>
+      <div className='app'>
         <Header setSearchType={setSearchType} />
         <SearchType setSearchParams={setSearchParams} />
-        {query ? <ResultsList {...this.props} /> : <div></div>}
+        {query ? <ResultsList searchType={searchType} filter={filter} query={query} updateResults={updateResults} getGenres={getGenres} results={results} genres={genres} /> : <div></div>}
       </div>
     )
   }
@@ -42,6 +43,7 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => ({
   setSearchType: (searchType) => () => dispatch(setSearchType(searchType)),
   setSearchParams: (filter, query) => dispatch(setSearchParams(filter, query)),
+  getGenres: (genres) => dispatch(getGenres(genres)),
   updateResults: (movies) => dispatch(updateResults(movies))
 })
 
@@ -63,6 +65,7 @@ const mapStateToProps = (state) => {
     searchType: state.searchType,
     filter: state.filter,
     query: state.query,
+    genres: state.genres,
     results: state.results
   }
   return props
