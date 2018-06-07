@@ -1,4 +1,12 @@
+.results--searchterms {
+  margin: 25px 100px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
 
+}
 .results--movie {
   border-color: #000;
   border-style: solid;

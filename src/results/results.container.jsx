@@ -73,7 +73,7 @@ class ResultsList extends Component {
       : noResults
     return (
       <div>
-        <div>{this.searchSummary()}</div>
+        <div className='results--searchterms'>{this.searchSummary()}</div>
         <div>{movieData}</div >
       </div>
     )
