@@ -12,23 +12,37 @@
   background-color: #eee;
 }
 
-.results--searchterms:after {
-  content: "";
-  position: absolute;
-  height: 5px;
-}
-
-.results--searchterms:before {
-  height: 5px;
-}
-
-
 .results--movie {
   padding: 10px 20px;
   display: flex;
   background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 /*5px 5px 5px grey;*/
+}
+
+.results--movie-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: row-start;
+}
+
+.results--movie-description {
+  margin: 10px;
+}
+
+.results--movie-title {
+  font-size: 24px;
+  font-style: bold;
+}
+
+.results--movie-genres {
+  font-size: 12px;
+  font-style: italic;
+  color: #666
+}
+
+.results--movie-rating {
+  font-size: 14px;
 }
 
 
