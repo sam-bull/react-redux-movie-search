@@ -5,16 +5,16 @@ import { setSearchParams } from './search/search.actions'
 import { getGenres, updateResults } from './results/results.actions'
 import PropTypes from 'prop-types'
 import Header from './header/header.component'
-import SearchPage from './search/search.search.component'
-import DiscoverPage from './search/search.discover.component'
-import FindPage from './search/search.find.component'
+import SearchSection from './search/search.section'
+// import SearchPage from './search/search.search.component'
+// import DiscoverPage from './search/search.discover.component'
+// import FindPage from './search/search.find.component'
 import ResultsList from './results/results.container'
 import './index.css'
 
 class App extends Component {
   static propTypes = {
-    searchType: PropTypes.string,
-    query: PropTypes.string
+    searchType: PropTypes.string
   }
 
   static defaultProps = {
@@ -23,17 +23,23 @@ class App extends Component {
 
   render() {
     const { searchType, setSearchType, setSearchParams, query } = this.props
-    const { filter, updateResults, getGenres, results, genres} = this.props
-    const SearchType = (searchType === 'discover')
-      ? DiscoverPage
-      : (searchType === 'find')
-        ? FindPage
-        : SearchPage
+    const { filter, updateResults, getGenres, results, genres } = this.props
+    
     return (
-      <div className='app'>
+      <div>
         <Header setSearchType={setSearchType} />
-        <SearchType setSearchParams={setSearchParams} />
-        {query ? <ResultsList searchType={searchType} filter={filter} query={query} updateResults={updateResults} getGenres={getGenres} results={results} genres={genres} /> : <div></div>}
+        <div className='app'>
+          <SearchSection setSearchParams={setSearchParams} setSearchType={setSearchType} searchType={searchType} />
+          {query ? <ResultsList
+            searchType={searchType}
+            filter={filter}
+            query={query}
+            updateResults={updateResults}
+            getGenres={getGenres}
+            results={results}
+            genres={genres} />
+            : <div></div>}
+        </div>
       </div>
     )
   }

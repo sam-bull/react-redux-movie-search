@@ -37,7 +37,9 @@ class ResultsList extends Component {
 
   componentDidMount = () => {
     const { searchType, filter, query } = this.props
-    fetch(getUrl(searchType, filter, query))
+    const url = getUrl(searchType, filter, query)
+    console.log(url)
+    fetch(url)
       .then(validate)
       .then((json) => this.props.updateResults(json))
       .catch((error) => console.log('Error searching:', error))
@@ -74,7 +76,7 @@ class ResultsList extends Component {
     return (
       <div>
         <div className='results--searchterms'>{this.searchSummary()}</div>
-        <div>{movieData}</div >
+        <div className='results--container'>{movieData}</div >
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './results.css'
+import '../index.css'
 import { imgUrl } from '../api/constants'
 
 class Movie extends Component {
@@ -13,7 +14,7 @@ class Movie extends Component {
   render() {
     const { movie } = this.props
     return (
-      <div className='results--movie' >
+      <div className='container results--movie' >
         <img src={imgUrl(movie.poster_path)} alt='poster' height='150' />
         <div>Title: {movie.title}<br />
           Rating: {movie.vote_average}/10<br />

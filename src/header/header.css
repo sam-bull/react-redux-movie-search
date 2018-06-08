@@ -1,20 +1,40 @@
+h1 {
+  color: #5d7;
+  border: 5px solid #5d7;
+  border-radius: 10px;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center
+  align-items: center;
+  background-color: #222;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+width: 100%;
 }
 
 .button {
-  background-color: #ddd;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
-  border-radius: 8px;
+  border-color: #5d7;
+  background-color: #222;
+  color: #eee;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .button:focus {
   background-color: #888;
   outline: none;
-
 }
+
