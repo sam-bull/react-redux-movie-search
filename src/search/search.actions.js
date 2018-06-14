@@ -7,16 +7,23 @@ export const setSearchTypeAction = (searchType) => ({
   payload: { searchType }
 })
 
-export const searchAction = (searchType, filter, query) => async dispatch => {  
+const searchAction = (filter, query) => ({
+  type: SEARCH,
+  payload: {
+    filter,
+    query
+  }
+})
+
+export const searchAndUpdateResultsAction = (searchType, filter, query) => async (dispatch) => {  
+  dispatch(searchAction(filter, query));
   try {
     const url = getUrl(searchType, filter, query)
     console.log(url)
     const response = await fetch(url)
     const results = await response.json();
-    dispatch({ type: SEARCH, payload: {filter, query} });
     dispatch(updateResultsAction(results));
   } catch (error) {
     console.error('Error getting movie results: ', error);
-    dispatch({ type: SEARCH, payload: {filter, query} });
   }
 }

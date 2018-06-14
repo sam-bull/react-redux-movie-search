@@ -15,8 +15,7 @@ const validate = (response) => {
 
 class ResultsList extends Component {
   static defaultProps = {
-    searchType: 'search',
-    // results: { results: [] }
+    searchType: 'search'
   }
 
   componentDidMount = () => {
@@ -66,7 +65,6 @@ class ResultsList extends Component {
   }
 }
 
-// Map Redux state to component props
 const mapStateToProps = (state) => {
   const props = {
     searchType: state.search.searchType,
@@ -86,5 +84,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ResultsList)
-
-// export default ResultsList

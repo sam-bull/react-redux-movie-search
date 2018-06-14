@@ -1,6 +1,5 @@
 import { SET_TYPE, SEARCH } from './search.action.types'
 
-// Reducers
 const searchReducer = (state = {}, action) => {
   const payload = action.payload
   switch (action.type) {

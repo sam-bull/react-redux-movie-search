@@ -15,13 +15,3 @@ export const getUrl = (type, filter, query) => {
       throw Error(`Incorrect search type: ${type} must be search, discover or find`)
   }
 }
-
-// const getResults = () => {
-//   const { searchType, filter, query, updateResults } = this.props
-//   const url = getUrl(searchType, filter, query)
-//   console.log(url)
-//   fetch(url)
-//     .then(validate)
-//     .then((json) => { console.log('then'); updateResults(json) })
-//     .catch((error) => console.log('Error searching:', error))
-// }
