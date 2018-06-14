@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import Movie from './results.component'
 import './results.css'
 import { connect } from 'react-redux'
-import { updateGenresAction, updateResultsAction } from './results.actions'
-import { genresUrl } from '../api/constants'
+import { getGenresAction, updateResultsAction } from './results.actions'
+// import { genresUrl } from '../api/constants'
 
-const validate = (response) => {
-  const { status, statusText } = response
-  if (status < 200) throw Error(statusText)
-  if (status > 299) throw Error(statusText)
-  const json = response.json()
-  return json
-}
+// const validate = (response) => {
+//   const { status, statusText } = response
+//   if (status < 200) throw Error(statusText)
+//   if (status > 299) throw Error(statusText)
+//   const json = response.json()
+//   return json
+// }
 
 class ResultsList extends Component {
   static defaultProps = {
@@ -19,10 +19,12 @@ class ResultsList extends Component {
   }
 
   componentDidMount = () => {
-    fetch(genresUrl())
-      .then(validate)
-      .then((json) => this.props.updateGenres(json))
-      .catch((error) => console.log('Error getting genres:', error))
+    const { updateGenres } = this.props
+    updateGenres()
+    // fetch(genresUrl())
+    //   .then(validate)
+    //   .then((json) => this.props.updateGenres(json))
+    //   .catch((error) => console.log('Error getting genres:', error))
   }
 
   searchSummary = () => {
@@ -42,17 +44,17 @@ class ResultsList extends Component {
   }
 
   showResults = (results) => {
-    return results.results 
-    ? results.results.map(movie => <Movie key={movie.id} movie={movie} />) 
-    : results.movie_results
-    ? <Movie movie={results.movie_results[0]} />
-    : "No movie with that ID was found."
+    return results.results
+      ? results.results.map(movie => <Movie key={movie.id} movie={movie} />)
+      : results.movie_results
+        ? <Movie movie={results.movie_results[0]} />
+        : "No movie with that ID was found."
   }
 
   render() {
-    const { query, results } = this.props
+    const { query, results, genres } = this.props
     const movieData = query
-      ? results
+      ? results && genres
         ? this.showResults(results)
         : <div className="loader" />
       : <div></div>
@@ -70,13 +72,14 @@ const mapStateToProps = (state) => {
     searchType: state.search.searchType,
     filter: state.search.filter,
     query: state.search.query,
-    results: state.results.results
+    results: state.results.results,
+    genres: state.results.genres
   }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateGenres: (json) => () => dispatch(updateGenresAction(json)),
+  updateGenres: () => dispatch(getGenresAction()),
   updateResults: (json) => () => { console.log('dispatch'); dispatch(updateResultsAction(json)) }
 })
 

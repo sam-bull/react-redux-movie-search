@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './results.css'
 import '../index.css'
 import { imgUrl } from '../api/constants'
 
 class Movie extends Component {
   getMovieGenres = (movieGenres) => {
-    const allGenres = this.props.allGenres
+    const allGenres = this.props.genres.genres
     const theseGenres = movieGenres.map(movieGenre => allGenres.find(genre => genre.id === movieGenre))
     const genresString = theseGenres.map(genre => genre.name).join(', ')
     return genresString
@@ -26,4 +27,13 @@ class Movie extends Component {
   }
 }
 
-export default Movie
+const mapStateToProps = (state) => {
+  const props = {
+    genres: state.results.genres
+  }
+  return props
+}
+
+export default connect(
+  mapStateToProps
+)(Movie)
