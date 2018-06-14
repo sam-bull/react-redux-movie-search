@@ -32,7 +32,7 @@ class DiscoverPage extends Component {
         </div> */}
         <br />
         <button
-          onClick={() => search(document.getElementById('filter').value, document.getElementById('query'.value))}>
+          onClick={() => search(document.getElementById('filter').value, document.getElementById('query').value)}>
           Discover Movies
         </button>
       </div>

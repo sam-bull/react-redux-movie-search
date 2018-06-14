@@ -6,7 +6,6 @@ import { updateGenresAction, updateResultsAction } from './results.actions'
 import { genresUrl } from '../api/constants'
 
 const validate = (response) => {
-  console.log('validate')
   const { status, statusText } = response
   if (status < 200) throw Error(statusText)
   if (status > 299) throw Error(statusText)
@@ -29,7 +28,6 @@ class ResultsList extends Component {
 
   searchSummary = () => {
     const { searchType, filter, query, results } = this.props
-    console.log(results)
     if (!results) return ''
     const start = 'You searched for:'
     switch (searchType) {
@@ -44,13 +42,19 @@ class ResultsList extends Component {
     }
   }
 
+  showResults = (results) => {
+    return results.results 
+    ? results.results.map(movie => <Movie key={movie.id} movie={movie} />) 
+    : results.movie_results
+    ? <Movie movie={results.movie_results[0]} />
+    : "No movie with that ID was found."
+  }
+
   render() {
     const { query, results } = this.props
-    console.log('query', query)
-    console.log('results', results)
     const movieData = query
       ? results
-        ? results.results.map(movie => <Movie key={movie.id} movie={movie} />)
+        ? this.showResults(results)
         : <div className="loader" />
       : <div></div>
     return (

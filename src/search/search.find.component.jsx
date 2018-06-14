@@ -5,7 +5,7 @@ import './search.css'
 
 const FindPage = ({ search }) => (
   <div className='search-container'>
-    <div>Find movie ID: </div>
+    <div>Find by IMDB ID: </div>
     <input type='text' id='query' />
     <button
       onClick={() => search(document.getElementById('query').value)}>

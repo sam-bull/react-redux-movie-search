@@ -10,6 +10,7 @@ export const setSearchTypeAction = (searchType) => ({
 export const searchAction = (searchType, filter, query) => async dispatch => {  
   try {
     const url = getUrl(searchType, filter, query)
+    console.log(url)
     const response = await fetch(url)
     const results = await response.json();
     dispatch({ type: SEARCH, payload: {filter, query} });
