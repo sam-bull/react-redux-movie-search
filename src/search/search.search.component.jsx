@@ -15,7 +15,7 @@ const SearchPage = ({ search }) => (
 )
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(searchAction(undefined, query))
+  search: (query) => dispatch(searchAction('search', undefined, query))
 })
 
 export default connect(

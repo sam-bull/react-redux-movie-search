@@ -41,7 +41,7 @@ class DiscoverPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (filter, query) => dispatch(searchAction(filter, query))
+  search: (filter, query) => dispatch(searchAction('discover', filter, query))
 })
 
 export default connect(
