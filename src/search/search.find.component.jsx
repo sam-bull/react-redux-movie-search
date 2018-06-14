@@ -1,15 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { searchAction } from './search.actions'
 import './search.css'
 
-const FindPage = ({ setSearchParams }) => (
+const FindPage = ({ search }) => (
   <div className='search-container'>
     <div>Find movie ID: </div>
     <input type='text' id='query' />
-    <button 
-    onClick={() => setSearchParams(undefined, document.getElementById('query').value)}>
-    Find Movie
+    <button
+      onClick={() => search(document.getElementById('query').value)}>
+      Find Movie
     </button>
   </div>
 )
 
-export default FindPage
+const mapDispatchToProps = (dispatch) => ({
+  search: (query) => dispatch(searchAction(undefined, query))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(FindPage)

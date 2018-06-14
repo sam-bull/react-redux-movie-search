@@ -1,23 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { searchAction } from './search.actions'
 import './search.css'
 
 class DiscoverPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: {}
-    }
-  }
-
-  // search = (filter, query) => {
-  //   this.props.
-  // }
-
   render() {
-    const { setSearchParams } = this.props
+    const { search } = this.props
     return (
       <div className='search-container'>
-      <div>Filter by: </div>
+        <div>Filter by: </div>
         <select id='filter'>
           <option value="default">-select-</option>
           <option value="year">Year</option>
@@ -25,7 +16,7 @@ class DiscoverPage extends Component {
           <option value="with_genres">Genre</option>
         </select>
         <input type='text' id='query' />
-        <br />
+        {/* <br />
         <div>Sort by: </div>
         <div>
           <select id='sort_by'>
@@ -38,10 +29,10 @@ class DiscoverPage extends Component {
             <option value="desc">descending</option>
             <option value="asc">ascending</option>
           </select>
-        </div>
+        </div> */}
         <br />
         <button
-          onClick={() => setSearchParams(document.getElementById('filter').value, document.getElementById('query').value)}>
+          onClick={() => search(document.getElementById('filter').value, document.getElementById('query'.value))}>
           Discover Movies
         </button>
       </div>
@@ -49,4 +40,11 @@ class DiscoverPage extends Component {
   }
 }
 
-export default DiscoverPage
+const mapDispatchToProps = (dispatch) => ({
+  search: (filter, query) => dispatch(searchAction(filter, query))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DiscoverPage)

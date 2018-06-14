@@ -1,11 +1,21 @@
-import { SET_SEARCH } from './search.action.types'
+import { SET_TYPE, SEARCH } from './search.action.types'
 
 // Reducers
 const searchReducer = (state = {}, action) => {
   const payload = action.payload
   switch (action.type) {
-    case SET_SEARCH:
-      return { page: 'results', searchType: payload.searchType, filter: payload.filter, query: payload.query }
+    case SET_TYPE:
+      return {
+        ...state,
+        searchType: payload.searchType
+      }
+    case SEARCH:
+      return {
+        ...state,
+        filter: payload.filter,
+        query: payload.query,
+        results: undefined
+      }
     default:
       return state
   }

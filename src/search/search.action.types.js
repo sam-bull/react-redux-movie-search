@@ -1,1 +1,2 @@
-export const SET_PARAMS = 'SET_PARAMS'
+export const SET_TYPE = 'SET_TYPE'
+export const SEARCH = 'SEARCH'
