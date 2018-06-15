@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Movie from './results.component'
+import Pagination from './results.pagination'
 import './results.css'
 import { connect } from 'react-redux'
 import { getGenresAction, updateResultsAction } from './results.actions'
@@ -61,7 +62,9 @@ class ResultsList extends Component {
     return (
       <div>
         <div className='results--searchterms'>{this.searchSummary()}</div>
+        <Pagination />
         <div className='results--container'>{movieData}</div >
+        <Pagination />
       </div>
     )
   }
@@ -80,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   updateGenres: () => dispatch(getGenresAction()),
-  updateResults: (json) => () => { console.log('dispatch'); dispatch(updateResultsAction(json)) }
+  updateResults: (json) => () => dispatch(updateResultsAction(json))
 })
 
 export default connect(

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 // import PropTypes from 'prop-types'
 import Header from './header/header.component'
 import SearchSection from './search/search.section'
@@ -28,16 +28,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const props = {
-    searchType: state.searchType,
-    filter: state.filter,
-    query: state.query,
-    results: state.results
-  }
-  return props
-}
-
-export default connect(
-  mapStateToProps
-)(App)
+export default App

@@ -18,9 +18,9 @@ export const updateResultsAction = (movies) => ({
 export const getGenresAction = () => async (dispatch) => {
   try {
     const response = await fetch(genresUrl())
-    const results = await response.json();
-    dispatch(updateGenresAction(results));
+    const results = await response.json()
+    dispatch(updateGenresAction(results))
   } catch (error) {
-    console.error('Error getting genres: ', error);
+    console.error('Error getting genres: ', error)
   }
 }

@@ -4,7 +4,7 @@ import { setSearchTypeAction } from './search.actions'
 import SearchPage from './search.search.component'
 import DiscoverPage from './search.discover.component'
 import FindPage from './search.find.component'
-import './search.css';
+import './search.css'
 import '../index.css'
 
 const SearchSection = ({ searchType, setSearchType }) => {

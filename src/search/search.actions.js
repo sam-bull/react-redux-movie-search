@@ -15,15 +15,16 @@ const searchAction = (filter, query) => ({
   }
 })
 
-export const searchAndUpdateResultsAction = (searchType, filter, query) => async (dispatch) => {  
-  dispatch(searchAction(filter, query));
+export const searchAndUpdateResultsAction = (searchType, filter, query, page) => async (dispatch) => {
+  dispatch(setSearchTypeAction(searchType))
+  dispatch(searchAction(filter, query))
   try {
-    const url = getUrl(searchType, filter, query)
+    const url = getUrl(searchType, filter, query, page)
     console.log(url)
     const response = await fetch(url)
-    const results = await response.json();
-    dispatch(updateResultsAction(results));
+    const results = await response.json()
+    dispatch(updateResultsAction(results))
   } catch (error) {
-    console.error('Error getting movie results: ', error);
+    console.error('Error getting movie results: ', error)
   }
 }
