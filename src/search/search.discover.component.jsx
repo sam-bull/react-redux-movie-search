@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { searchAndUpdateResultsAction } from './search.actions'
+import { searchRequestAction } from './search.actions'
 import './search.css'
 
 class DiscoverPage extends Component {
@@ -41,7 +41,7 @@ class DiscoverPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (filter, query) => dispatch(searchAndUpdateResultsAction('discover', filter, query))
+  search: (filter, query) => dispatch(searchRequestAction('discover', filter, query))
 })
 
 export default connect(

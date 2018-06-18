@@ -3,7 +3,7 @@ import Movie from './results.component'
 import Pagination from './results.pagination'
 import './results.css'
 import { connect } from 'react-redux'
-import { getGenresAction, updateResultsAction } from './results.actions'
+import { updateGenresAction, updateResultsAction } from './results.actions'
 // import { genresUrl } from '../api/constants'
 
 // const validate = (response) => {
@@ -20,8 +20,9 @@ class ResultsList extends Component {
   }
 
   componentDidMount = () => {
-    const { updateGenres } = this.props
-    updateGenres()
+    const { genres, updateGenres } = this.props
+    genres || updateGenres()
+    console.log('genres updated')
     // fetch(genresUrl())
     //   .then(validate)
     //   .then((json) => this.props.updateGenres(json))
@@ -45,8 +46,8 @@ class ResultsList extends Component {
   }
 
   showResults = (results) => {
-    return results.results
-      ? results.results.map(movie => <Movie key={movie.id} movie={movie} />)
+    return results
+      ? results.map(movie => <Movie key={movie.id} movie={movie} />)
       : results.movie_results
         ? <Movie movie={results.movie_results[0]} />
         : "No movie with that ID was found."
@@ -54,8 +55,9 @@ class ResultsList extends Component {
 
   render() {
     const { query, results, genres } = this.props
+    console.log(query, results, genres)
     const movieData = query
-      ? results && genres
+      ? results// && genres
         ? this.showResults(results)
         : <div className="loader" />
       : <div></div>
@@ -75,14 +77,14 @@ const mapStateToProps = (state) => {
     searchType: state.search.searchType,
     filter: state.search.filter,
     query: state.search.query,
-    results: state.results.results,
+    results: state.search.results,
     genres: state.results.genres
   }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateGenres: () => dispatch(getGenresAction()),
+  updateGenres: () => dispatch(updateGenresAction()),
   updateResults: (json) => () => dispatch(updateResultsAction(json))
 })
 

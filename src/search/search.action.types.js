@@ -1,2 +1,4 @@
-export const SET_TYPE = 'SET_TYPE'
-export const SEARCH = 'SEARCH'
+export const SEARCH_REQUEST = 'SEARCH_REQUEST'
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+export const SEARCH_FAILURE = 'SEARCH_FAILURE'
+export const SEARCH_UPDATE = 'SEARCH_UPDATE'

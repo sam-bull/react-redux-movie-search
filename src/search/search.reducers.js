@@ -1,19 +1,31 @@
-import { SET_TYPE, SEARCH } from './search.action.types'
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE } from './search.action.types'
 
 const searchReducer = (state = {}, action) => {
-  const payload = action.payload
   switch (action.type) {
-    case SET_TYPE:
+    case SEARCH_REQUEST: {
+      const { searchType, filter, query, page } = action.payload
       return {
         ...state,
-        searchType: payload.searchType
+        searchType,
+        filter,
+        query,
+        page
       }
-    case SEARCH:
+    }
+    case SEARCH_SUCCESS: {
+      console.log('search success')
+      const { results, page, total_pages } = action.payload
       return {
         ...state,
-        filter: payload.filter,
-        query: payload.query,
-        results: undefined
+        results,
+        page,
+        total_pages
+      }
+    }
+    case SEARCH_FAILURE:
+      return {
+        ...state,
+        error: action.payload.error
       }
     default:
       return state

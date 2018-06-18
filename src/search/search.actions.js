@@ -1,30 +1,27 @@
-import { SET_TYPE, SEARCH } from './search.action.types'
-import { getUrl } from '../results/results.fetchMovies'
-import { updateResultsAction } from '../results/results.actions'
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE } from './search.action.types'
 
-export const setSearchTypeAction = (searchType) => ({
-  type: SET_TYPE,
-  payload: { searchType }
-})
-
-const searchAction = (filter, query) => ({
-  type: SEARCH,
+export const searchRequestAction = (searchType, filter, query, page=1) => ({
+  type: SEARCH_REQUEST,
   payload: {
+    searchType,
     filter,
-    query
+    query,
+    page
   }
 })
 
-export const searchAndUpdateResultsAction = (searchType, filter, query, page) => async (dispatch) => {
-  dispatch(setSearchTypeAction(searchType))
-  dispatch(searchAction(filter, query))
-  try {
-    const url = getUrl(searchType, filter, query, page)
-    console.log(url)
-    const response = await fetch(url)
-    const results = await response.json()
-    dispatch(updateResultsAction(results))
-  } catch (error) {
-    console.error('Error getting movie results: ', error)
+export const searchSuccessAction = (results, page, total_pages) => ({
+  type: SEARCH_SUCCESS,
+  payload: {
+    results,
+    page,
+    total_pages
   }
-}
+})
+
+export const searchFailureAction = (error) => ({
+  type: SEARCH_FAILURE,
+  payload: {
+    error
+  }
+})

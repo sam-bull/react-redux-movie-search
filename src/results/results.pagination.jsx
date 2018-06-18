@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './results.css'
 import '../index.css'
-import { searchAndUpdateResultsAction } from '../search/search.actions'
+import { searchRequestAction } from '../search/search.actions'
 
 class Pagination extends Component {
   render() {
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updateResults: (searchType, filter, query, page) => () => dispatch(searchAndUpdateResultsAction(searchType, filter, query, page))
+  updateResults: (searchType, filter, query, page) => () => dispatch(searchRequestAction(searchType, filter, query, page))
 })
 
 export default connect(

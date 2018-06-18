@@ -12,18 +12,18 @@ body {
   align-items: center;
 }
 
-.container {
+.app--container {
   margin: 10px 0px;
 }
 
 @media screen and (min-width: 651px) {
-  .container {
+  .app--container {
     width: 600px
   }
 }
 
 @media screen and (max-width: 650px) {
-  .container {
+  .app--container {
     width: 400px
   }
 }

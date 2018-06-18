@@ -1,40 +1,40 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { setSearchTypeAction } from './search.actions'
+import React, { Component } from 'react'
 import SearchPage from './search.search.component'
 import DiscoverPage from './search.discover.component'
 import FindPage from './search.find.component'
 import './search.css'
 import '../index.css'
 
-const SearchSection = ({ searchType, setSearchType }) => {
-  const SearchType = (searchType === 'discover')
-    ? DiscoverPage
-    : (searchType === 'find')
-      ? FindPage
-      : SearchPage
-  return (
-    <div className='container'>
-      <button className='search--button' onClick={setSearchType('search')}>Search</button>
-      <button className='search--button' onClick={setSearchType('discover')}>Discover</button>
-      <button className='search--button' onClick={setSearchType('find')}>Find</button>
-      <SearchType />
-    </div>
-  )
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  setSearchType: (searchType) => () => dispatch(setSearchTypeAction(searchType))
-})
-
-const mapStateToProps = (state) => {
-  const props = {
-    searchType: state.search.searchType
+class SearchSection extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchType: 'search'
+    }
   }
-  return props
+
+  setSearchType = (searchType) => () => {
+    this.setState(oldState => ({
+      searchType
+    }))
+  }
+
+  render() {
+    const { searchType } = this.state
+    const SearchType = (searchType === 'discover')
+      ? DiscoverPage
+      : (searchType === 'find')
+        ? FindPage
+        : SearchPage
+    return (
+      <div className='app--container'>
+        <button className='search--button' onClick={this.setSearchType('search')}>Search</button>
+        <button className='search--button' onClick={this.setSearchType('discover')}>Discover</button>
+        <button className='search--button' onClick={this.setSearchType('find')}>Find</button>
+        <SearchType />
+      </div>
+    )
+  }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchSection)
+export default SearchSection

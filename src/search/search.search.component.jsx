@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { searchAndUpdateResultsAction } from './search.actions'
+import { searchRequestAction } from './search.actions'
 import './search.css'
 
 const SearchPage = ({ search }) => (
@@ -15,7 +15,7 @@ const SearchPage = ({ search }) => (
 )
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(searchAndUpdateResultsAction('search', undefined, query))
+  search: (query) => dispatch(searchRequestAction('search', undefined, query))
 })
 
 export default connect(
