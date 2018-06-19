@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { searchRequestAction } from './search.actions'
 import './search.css'
 
 class DiscoverPage extends Component {
@@ -32,7 +30,7 @@ class DiscoverPage extends Component {
         </div> */}
         <br />
         <button
-          onClick={() => search(document.getElementById('filter').value, document.getElementById('query').value)}>
+          onClick={() => search('discover', document.getElementById('filter').value, document.getElementById('query').value)}>
           Discover Movies
         </button>
       </div>
@@ -40,11 +38,4 @@ class DiscoverPage extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  search: (filter, query) => dispatch(searchRequestAction('discover', filter, query))
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(DiscoverPage)
+export default DiscoverPage

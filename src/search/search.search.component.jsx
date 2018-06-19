@@ -1,6 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { searchRequestAction } from './search.actions'
 import './search.css'
 
 const SearchPage = ({ search }) => (
@@ -8,17 +6,10 @@ const SearchPage = ({ search }) => (
     <div>Search text: </div>
     <input type='text' id='query' />
     <button
-      onClick={() => search(document.getElementById('query').value)}>
+      onClick={() => search('search', undefined, document.getElementById('query').value)}>
       Search Movies
     </button>
   </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(searchRequestAction('search', undefined, query))
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SearchPage)
+export default SearchPage

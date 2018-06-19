@@ -1,6 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { searchRequestAction } from './search.actions'
 import './search.css'
 
 const FindPage = ({ search }) => (
@@ -8,17 +6,10 @@ const FindPage = ({ search }) => (
     <div>Find by IMDB ID: </div>
     <input type='text' id='query' />
     <button
-      onClick={() => search(document.getElementById('query').value)}>
+      onClick={() => search('find', undefined, document.getElementById('query').value)}>
       Find Movie
     </button>
   </div>
 )
 
-const mapDispatchToProps = (dispatch) => ({
-  search: (query) => dispatch(searchRequestAction('find', undefined, query))
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(FindPage)
+export default FindPage

@@ -13,7 +13,6 @@ const searchReducer = (state = {}, action) => {
       }
     }
     case SEARCH_SUCCESS: {
-      console.log('search success')
       const { results, page, total_pages } = action.payload
       return {
         ...state,
