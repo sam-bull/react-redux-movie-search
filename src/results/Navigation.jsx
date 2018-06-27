@@ -36,7 +36,7 @@ class Pagination extends Component {
       </div>
     )
     return (
-      results ? pagination : <div></div>
+      results && total_pages > 1 ? pagination : <div></div>
     )
   }
 }

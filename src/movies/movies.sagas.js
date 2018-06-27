@@ -30,8 +30,9 @@ function* moviesSaga(action) {
 
     // Extract the data we want
     const jsonResponse = yield response.json()
-    const { results, total_pages } = jsonResponse
-
+    const { total_pages } = jsonResponse
+    const results = jsonResponse.results || jsonResponse.movie_results
+    
     // Update the store
     yield put(getMoviesSuccessAction(results, page, total_pages))
     console.log('now for cache')

@@ -24,3 +24,6 @@ Created using create-react-app, hosted at http://redux-movie-search.surge.sh/ by
  - [x] Host on surge
  - [ ] Click on a result to go to an information page about that movie
  - [ ] Add options to search TV shows and actors
+ - [ ] Use the Enter key to trigger a search rather than always having to click the search button
+ - [ ] Add a "Did you mean?" to the text-based search
+ - [ ] Add a "Did you mean?" to the IMDB 'find' search

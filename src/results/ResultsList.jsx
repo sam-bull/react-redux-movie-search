@@ -41,19 +41,19 @@ class ResultsList extends Component {
     }
   }
 
-  showResults = (results) => {
-    return results
+  showResults = (results, searchType) => {
+    return results[0]
       ? results.map(movie => <Movie key={movie.id} movie={movie} />)
-      : results.movie_results
-        ? <Movie movie={results.movie_results[0]} />
-        : "No movie with that ID was found."
+      : searchType==='find' ?
+        "No movie with that ID was found."
+        : "No movies matching your search query were found."
   }
 
   render() {
-    const { query, results, genres } = this.props
+    const { query, results, genres, searchType } = this.props
     const movieData = query
       ? results && genres
-        ? this.showResults(results)
+        ? this.showResults(results, searchType)
         : <div className="loader" />
       : <div></div>
     return (
