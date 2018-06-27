@@ -7,12 +7,6 @@ import App from './App'
 import rootReducer from './root.reducer'
 import rootSaga from './sagas'
 
-// IIFE 
-// (() => {
-//   var x = 2
-//   console.log(x)
-// })()
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const sagaMiddleware = createSagaMiddleware()

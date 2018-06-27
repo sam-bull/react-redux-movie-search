@@ -5,15 +5,6 @@ import './results.css'
 import { connect } from 'react-redux'
 import { getGenresRequestAction } from '../genres/genres.action.creators'
 import { getMoviesRequestAction } from '../movies/movies.action.creators'
-// import { genresUrl } from '../api/constants'
-
-// const validate = (response) => {
-//   const { status, statusText } = response
-//   if (status < 200) throw Error(statusText)
-//   if (status > 299) throw Error(statusText)
-//   const json = response.json()
-//   return json
-// }
 
 class ResultsList extends Component {
   static defaultProps = {
@@ -44,8 +35,8 @@ class ResultsList extends Component {
   showResults = (results, searchType) => {
     return results[0]
       ? results.map(movie => <Movie key={movie.id} movie={movie} />)
-      : searchType==='find' ?
-        "No movie with that ID was found."
+      : searchType === 'find'
+        ? "No movie with that ID was found."
         : "No movies matching your search query were found."
   }
 

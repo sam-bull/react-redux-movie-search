@@ -11,7 +11,7 @@ const FindPage = ({ search }) => (
         (event) => event.key === 'Enter' && document.getElementById('findMovieButton').click()
       } />
     <button
-    id='findMovieButton'
+      id='findMovieButton'
       onClick={() => search('find', undefined, document.getElementById('query').value)}>
       Find Movie
     </button>
