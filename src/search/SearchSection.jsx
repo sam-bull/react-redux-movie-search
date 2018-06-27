@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import SearchPage from './search.search.component'
-import DiscoverPage from './search.discover.component'
-import FindPage from './search.find.component'
+import SearchPage from './Search'
+import DiscoverPage from './Discover'
+import FindPage from './Find'
 import './search.css'
 import '../index.css'
-import { searchSuccessAction, searchRequestAction } from './search.actions'
+import { getMoviesRequestAction, getMoviesSuccessAction } from '../movies/movies.action.creators'
 // import { searchWithCache } from '../results/results.fetchMovies'
 
 class SearchSection extends Component {
@@ -22,12 +22,20 @@ class SearchSection extends Component {
     }))
   }
 
+  cacheContains = (cache, searchType, filter, query, page = 1) => {
+    const { results = 0, total_pages = 0 } = cache.filter(cacheContents =>
+     cacheContents.searchType === searchType &&
+     cacheContents.filter === filter &&
+     cacheContents.query === query &&
+     cacheContents.page === page)[0] || { results: 0, total_pages: 0 }
+    return { results, page, total_pages }
+  }
+
   search = (searchType, filter, query) => {
-    const { cache = {}, dispatchSuccess, dispatchRequest } = this.props
-    const cacheKey = searchType + filter + query + '1'
-    const cacheContents = cache[cacheKey]
-    console.log('cache has', cacheKey, ':', cacheContents)
-    cacheContents
+    const { cache = [], dispatchSuccess, dispatchRequest } = this.props
+    const cacheContents = this.cacheContains(cache, searchType, filter, query)
+    console.log('cache is', cache, 'has', cacheContents)
+    cacheContents.results
       ? dispatchSuccess(cacheContents)
       : dispatchRequest(searchType, filter, query)
   }
@@ -52,13 +60,13 @@ class SearchSection extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    cache: state.cache
+    cache: state.movies.cache
   }
   return props
 }
 const mapDispatchToProps = (dispatch) => ({
-  dispatchSuccess: ({ results, page, total_pages }) => dispatch(searchSuccessAction(results, page, total_pages)),
-  dispatchRequest: (searchType, filter, query) => dispatch(searchRequestAction(searchType, filter, query))
+  dispatchSuccess: ({ results, page, total_pages }) => dispatch(getMoviesSuccessAction(results, page, total_pages)),
+  dispatchRequest: (searchType, filter, query) => dispatch(getMoviesRequestAction(searchType, filter, query))
 })
 
 export default connect(

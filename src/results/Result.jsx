@@ -6,7 +6,7 @@ import { imgUrl } from '../api/constants'
 
 class Movie extends Component {
   getMovieGenres = (movieGenres) => {
-    const allGenres = this.props.genres.genres
+    const allGenres = this.props.genres
     const theseGenres = movieGenres.map(movieGenre => allGenres.find(genre => genre.id === movieGenre))
     const genresString = theseGenres.map(genre => genre.name).join(', ')
     return genresString
@@ -15,12 +15,12 @@ class Movie extends Component {
   render() {
     const { movie } = this.props
     return (
-      <div className='container results--movie' >
+      <div className='app--container results--movie' >
         <img src={imgUrl(movie.poster_path)} alt='poster' height='150' />
 
         <div className='reults--movie-description'>
           <div className='results--movie-title'>
-            {movie.title}
+            {movie.title} ({movie.release_date.split('-')[0]})
           </div>
           <div className='results--movie-genres'>
             {this.getMovieGenres(movie.genre_ids)}
@@ -36,7 +36,7 @@ class Movie extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    genres: state.genres
+    genres: state.genres.genres
   }
   return props
 }

@@ -1,3 +1,0 @@
-export const GET_GENRES = 'GET_GENRES'
-export const UPDATE_GENRES = 'UPDATE_GENRES'
-export const UPDATE_RESULTS = 'UPDATE_RESULTS'

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
 // import PropTypes from 'prop-types'
-import Header from './header/header.component'
-import SearchSection from './search/search.section'
-import ResultsList from './results/results.container'
+import Header from './header/Header'
+import SearchSection from './search/SearchSection'
+import ResultsList from './results/ResultsList'
 import './index.css'
 
 class App extends Component {

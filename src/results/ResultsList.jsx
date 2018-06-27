@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Movie from './results.component'
-import Pagination from './results.pagination'
+import Movie from './Result'
+import Pagination from './Navigation'
 import './results.css'
 import { connect } from 'react-redux'
-import { getGenresAction, updateResultsAction } from './results.actions'
+import { getGenresRequestAction } from '../genres/genres.action.creators'
+import { getMoviesRequestAction } from '../movies/movies.action.creators'
 // import { genresUrl } from '../api/constants'
 
 // const validate = (response) => {
@@ -59,7 +60,7 @@ class ResultsList extends Component {
       <div>
         <div className='results--searchterms'>{this.searchSummary()}</div>
         <Pagination />
-        <div className='results--container'>{movieData}</div >
+        <div className='results--list'>{movieData}</div >
         <Pagination />
       </div>
     )
@@ -68,18 +69,18 @@ class ResultsList extends Component {
 
 const mapStateToProps = (state) => {
   const props = {
-    searchType: state.searchType,
-    filter: state.filter,
-    query: state.query,
-    results: state.results,
-    genres: state.genres
+    searchType: state.movies.searchType,
+    filter: state.movies.filter,
+    query: state.movies.query,
+    results: state.movies.results,
+    genres: state.genres.genres
   }
   return props
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getGenres: () => dispatch(getGenresAction()),
-  updateResults: (json) => () => dispatch(updateResultsAction(json))
+  getGenres: () => dispatch(getGenresRequestAction()),
+  updateResults: (json) => () => dispatch(getMoviesRequestAction(json))
 })
 
 export default connect(
