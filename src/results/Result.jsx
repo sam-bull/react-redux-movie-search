@@ -16,7 +16,7 @@ class Movie extends Component {
     const { movie } = this.props
     return (
       <div className='app--container results--movie' >
-        <img src={imgUrl(movie.poster_path)} alt='poster' height='150' />
+        <img className='results--movie-poster' src={imgUrl(movie.poster_path)} alt='poster' height='150' />
 
         <div className='reults--movie-description'>
           <div className='results--movie-title'>

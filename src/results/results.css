@@ -21,6 +21,10 @@
 /*5px 5px 5px grey;*/
 }
 
+.results--movie-poster {
+  padding-right: 20px;
+}
+
 .results--movie-container {
   display: flex;
   flex-direction: row;
