@@ -1,5 +1,5 @@
 import { GET_MOVIES_SUCCESS, GET_MOVIES_FAILURE, UPDATE_MOVIES_CACHE, UPDATE_SEARCH_TERMS } from './movies.action.types'
-import { getUrl } from './movies.util'
+import { getUrl } from './movies.utils'
 
 export const getMoviesRequestAction = (searchType, filter, query, page) => async (dispatch) => {
   dispatch(updateSearchTermsAction(searchType, filter, query));
