@@ -1,17 +1,7 @@
-import { GET_MOVIES_REQUEST, GET_MOVIES_SUCCESS, GET_MOVIES_FAILURE, UPDATE_MOVIES_CACHE } from './movies.action.types'
+import { GET_MOVIES_SUCCESS, GET_MOVIES_FAILURE, UPDATE_MOVIES_CACHE, UPDATE_SEARCH_TERMS } from './movies.action.types'
 
 const moviesReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_MOVIES_REQUEST: {
-      const { searchType, filter, query, page } = action.payload
-      return {
-        ...state,
-        searchType,
-        filter,
-        query,
-        page
-      }
-    }
     case GET_MOVIES_SUCCESS: {
       const { results, page, total_pages } = action.payload
       return {
@@ -42,6 +32,16 @@ const moviesReducer = (state = {}, action) => {
       }
       console.log('new state', newState)
       return newState
+    }
+    case UPDATE_SEARCH_TERMS: {
+      const { searchType, filter, query, page } = action.payload
+      return {
+        ...state,
+        searchType,
+        filter,
+        query,
+        page
+      }
     }
     default:
       return state
