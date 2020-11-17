@@ -6963,7 +6963,7 @@
   dependencies:
     "p-locate" "^4.1.0"
 
-"lodash-es@^4.17.5":
+"lodash-es@^4.17.14":
   "integrity" "sha512-iesFYPmxYYGTcmQK0sL8bX3TGHyM6b2qREaB4kamHfQyfPJP0xgoGxp19nsH16nsfquLdiyKyX3mQkfiSGV8Rg=="
   "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.10.tgz"
   "version" "4.17.10"
@@ -9126,7 +9126,7 @@
     "hoist-non-react-statics" "^2.5.0"
     "invariant" "^2.0.0"
     "lodash" "^4.17.5"
-    "lodash-es" "^4.17.5"
+    "lodash-es" "^4.17.14"
     "loose-envify" "^1.1.0"
     "prop-types" "^15.6.0"
 
